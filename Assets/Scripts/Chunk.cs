@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
+    [Tooltip("Increase of bounds constructed via the child objects via the given amount. This may save some recomputations when adding new childs during runtime.")]
     public Vector3Int buffer;
     private BoundsInt bounds;
     private Transform[,,] childs;

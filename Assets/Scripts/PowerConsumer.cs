@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class PowerConsumer : MonoBehaviour
 {
+    [Tooltip("Whether the consumer generated points for the owner or not.")]
     public bool bringsPoints;
+    [Tooltip("Type of the ray this consumer terminates. Use multiple consumers for terminating multiple types.")]
     public PowerType powerType;
+    [Tooltip("Owner of the consumer.")]
     public int owner;
     private Chunk chunk;
 

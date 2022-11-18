@@ -610,9 +610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8036938feaee94fb58e227529f8f63fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 1
-  output: 12
-  powerType: 0
+  inputDirections: 1
+  outputDirections: 12
+  inputType: 0
+  outputType: 0
 --- !u!135 &2137291973
 SphereCollider:
   m_ObjectHideFlags: 0
