@@ -1,37 +1,48 @@
 using UnityEngine;
 
-public class Raycaster {
+public class Raycaster
+{
     private Chunk chunk;
 
-    public Raycaster(Chunk chunk) {
+    public Raycaster(Chunk chunk)
+    {
         this.chunk = chunk;
     }
 
     // Returns whether start is powered by the given sort
-    public bool Cast(Vector3Int start, Vector3Int initalDirection, PowerType powerType) {
+    public bool Cast(Vector3Int start, Vector3Int initalDirection, PowerType powerType)
+    {
         Vector3Int currentPos = start;
-        while (true) {
+        while (true)
+        {
             currentPos += initalDirection;
-            if (!chunk.IsInBounds(currentPos)) {
+            if (!chunk.IsInBounds(currentPos))
+            {
                 // out of bounds
                 return chunk.IsGloballyPowered(initalDirection, powerType);
             }
             var currentObj = chunk.GameObjectAt(currentPos);
-            if (currentObj == null) {
+            if (currentObj == null)
+            {
                 // air
                 continue;
             }
             // TODO: check emitter first to change direction of traversal
-            var currentConsumer = currentObj.GetComponent<PowerConsumer>();
-            if (currentConsumer == null) {
-                // not a consumer, so we don't care
+            var currentConsumers = currentObj.GetComponents<PowerConsumer>();
+            if (currentConsumers == null)
+            {
+                // no consumers, so we don't care
                 continue;
             }
-            if (currentConsumer.powerType.HasFlag(powerType)) {
-                // there is a consumer of a relevant type in the ray direction
-                return false;
+            foreach (var consumer in currentConsumers)
+            {
+                if (consumer.powerType == powerType)
+                {
+                    // there is a consumer of a relevant type in the ray direction
+                    return false;
+                }
             }
-            // consumer of unrelevant type
+            // consumers of unrelevant types
             continue;
         }
     }

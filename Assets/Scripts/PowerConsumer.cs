@@ -1,17 +1,21 @@
 using UnityEngine;
 
-public class PowerConsumer : MonoBehaviour {
+public class PowerConsumer : MonoBehaviour
+{
     public bool bringsPoints;
     public PowerType powerType;
     public int owner;
     private Chunk chunk;
 
-    public void Start() {
+    public void Start()
+    {
         this.chunk = GetComponentInParent<Chunk>();
     }
 
-    public void Update() {
-        if (!bringsPoints) {
+    public void Update()
+    {
+        if (!bringsPoints)
+        {
             // no need to raycast if no energy is counted
             return;
         }

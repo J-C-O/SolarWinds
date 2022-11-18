@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,6 +6,7 @@ public class Chunk : MonoBehaviour
     public Vector3Int buffer;
     private BoundsInt bounds;
     private Transform[,,] childs;
+    private int prevChildCount;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +16,7 @@ public class Chunk : MonoBehaviour
 
     void CalculateBoundsAndChilds()
     {
+        prevChildCount = transform.childCount;
         Transform[] childTransforms = new Transform[transform.childCount];
         Vector3Int[] voxelPositions = new Vector3Int[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
@@ -55,7 +55,8 @@ public class Chunk : MonoBehaviour
         }
         var index = coords - bounds.min;
         var childTransform = childs[index.x, index.y, index.z];
-        if (childTransform == null) {
+        if (childTransform == null)
+        {
             return null;
         }
         return childTransform.gameObject;
@@ -87,6 +88,9 @@ public class Chunk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (prevChildCount != transform.childCount)
+        {
+            CalculateBoundsAndChilds();
+        }
     }
 }
