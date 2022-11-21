@@ -404,7 +404,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000013131153}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 140}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &235565774
 MonoBehaviour:
@@ -493,6 +493,8 @@ MonoBehaviour:
   InventoryItem: {fileID: 7866709598328281222, guid: 28ec7143c57138c45970a2050609fac1, type: 3}
   EnableRemove: {fileID: 1543772669}
   InventoryItems: []
+  OpenInventoryKey: 101
+  openInventoryButton: {fileID: 1753045007}
 --- !u!20 &254029505 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4136927757770042763, guid: 1d8ce9fe8e46d7247a7aa87f04d12d0d, type: 3}
@@ -881,7 +883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1089782273
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1140,7 +1142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4136927757709659710, guid: 1d8ce9fe8e46d7247a7aa87f04d12d0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1451,7 +1453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1482673135
 RectTransform:
   m_ObjectHideFlags: 0
