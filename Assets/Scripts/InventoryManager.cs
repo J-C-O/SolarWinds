@@ -14,9 +14,21 @@ public class InventoryManager : MonoBehaviour
     public Toggle EnableRemove;
 
     public InventoryItemController[] InventoryItems;
+
+    public KeyCode OpenInventoryKey;
+    public Button openInventoryButton;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(OpenInventoryKey))
+        {
+            openInventoryButton.onClick.Invoke();
+        }
     }
 
     public void Add(Item item)
