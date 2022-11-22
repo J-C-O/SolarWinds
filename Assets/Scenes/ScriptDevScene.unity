@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -392,6 +392,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 106206024}
     m_Modifications:
     - target: {fileID: 8411357073909158996, guid: 3f66433bb09224f3096b61983948a510, type: 3}
@@ -443,12 +444,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f66433bb09224f3096b61983948a510, type: 3}
 --- !u!1001 &1050461021
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 106206024}
     m_Modifications:
     - target: {fileID: 7819437488266864022, guid: 1406c1736194d4dfd9dee135a489ab32, type: 3}
@@ -500,12 +503,14 @@ PrefabInstance:
       value: SolarPanel (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1406c1736194d4dfd9dee135a489ab32, type: 3}
 --- !u!1001 &1806773146
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 106206024}
     m_Modifications:
     - target: {fileID: 8411357073909158996, guid: 3f66433bb09224f3096b61983948a510, type: 3}
@@ -515,6 +520,10 @@ PrefabInstance:
     - target: {fileID: 8411357073909158997, guid: 3f66433bb09224f3096b61983948a510, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411357073909158997, guid: 3f66433bb09224f3096b61983948a510, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.0375
       objectReference: {fileID: 0}
     - target: {fileID: 8411357073909158997, guid: 3f66433bb09224f3096b61983948a510, type: 3}
       propertyPath: m_LocalPosition.x
@@ -557,6 +566,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f66433bb09224f3096b61983948a510, type: 3}
 --- !u!4 &2044084983 stripped
 Transform:
@@ -682,6 +692,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 106206024}
     m_Modifications:
     - target: {fileID: 7819437488266864022, guid: 1406c1736194d4dfd9dee135a489ab32, type: 3}
@@ -733,12 +744,14 @@ PrefabInstance:
       value: SolarPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1406c1736194d4dfd9dee135a489ab32, type: 3}
 --- !u!1001 &8411357074674123602
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 106206024}
     m_Modifications:
     - target: {fileID: 8411357073909158996, guid: 3f66433bb09224f3096b61983948a510, type: 3}
@@ -790,4 +803,5 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f66433bb09224f3096b61983948a510, type: 3}

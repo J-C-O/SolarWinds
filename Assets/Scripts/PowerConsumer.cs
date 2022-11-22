@@ -9,6 +9,7 @@ public class PowerConsumer : MonoBehaviour
     [Tooltip("Owner of the consumer.")]
     public int owner;
     private Chunk chunk;
+    public bool IsPowered;
 
     public void Start()
     {
@@ -30,7 +31,7 @@ public class PowerConsumer : MonoBehaviour
         var back = raycaster.Cast(intPos, Vector3Int.back, powerType);
         var up = raycaster.Cast(intPos, Vector3Int.up, powerType);
         var down = raycaster.Cast(intPos, Vector3Int.down, powerType);
-        var isPowered = right || left || forward || back || up || down;
-        Debug.Log("isPowered: " + isPowered.ToString());
+        IsPowered = right || left || forward || back || up || down;
+        //Debug.Log("["+ gameObject.name +"]isPowered: " + IsPowered.ToString());
     }
 }
