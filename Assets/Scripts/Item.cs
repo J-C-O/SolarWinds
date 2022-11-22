@@ -12,4 +12,7 @@ public class Item : ScriptableObject
     public int Value;
 
     public Sprite ItemIcon { get => itemIcon; set => itemIcon = value; }
+
+    public PowerType PowerType;
+    public bool IsActive;
 }
