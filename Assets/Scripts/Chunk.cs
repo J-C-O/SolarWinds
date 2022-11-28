@@ -56,6 +56,7 @@ public class Chunk : MonoBehaviour
         }
     }
 
+    // Returns the GameObject at coords in grid space if any.
     public GameObject GameObjectAt(Vector3Int coords)
     {
         if (!IsInBounds(coords))
@@ -69,6 +70,12 @@ public class Chunk : MonoBehaviour
             return null;
         }
         return childTransform.gameObject;
+    }
+
+    // Returns the GameObject at coords in world space if any.
+    public GameObject GameObjectAt(Vector3 coords) {
+        var pos = Quaternion.Inverse(transform.rotation).normalized * coords;
+        return GameObjectAt(Vector3Int.RoundToInt(pos));
     }
 
     public bool IsInBounds(Vector3Int coords)
