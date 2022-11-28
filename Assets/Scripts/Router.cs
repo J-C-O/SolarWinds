@@ -12,6 +12,8 @@ public class Router : MonoBehaviour
     [Tooltip("Power type, which is output by this router. Use multiple routers if multiple power types shall be routed.")]
     public PowerType outputType;
 
+    private Chunk chunk;
+
     // http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetNaive
     private static int CountBits(uint value)
     {
@@ -85,7 +87,7 @@ public class Router : MonoBehaviour
     {
         get
         {
-            return Router.RotatedVectorsOf(inputDirections, transform.rotation);
+            return Router.RotatedVectorsOf(inputDirections, Quaternion.Inverse(chunk.transform.rotation).normalized * transform.rotation);
         }
     }
 
@@ -93,7 +95,7 @@ public class Router : MonoBehaviour
     {
         get
         {
-            return Router.RotatedVectorsOf(outputDirections, transform.rotation);
+            return Router.RotatedVectorsOf(outputDirections, Quaternion.Inverse(chunk.transform.rotation).normalized * transform.rotation);
         }
     }
 
@@ -119,7 +121,7 @@ public class Router : MonoBehaviour
 
     void Start()
     {
-
+        this.chunk = this.GetComponentInParent<Chunk>();
     }
 
     void Update()

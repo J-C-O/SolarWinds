@@ -15,15 +15,23 @@ public class Chunk : MonoBehaviour
         CalculateBoundsAndChilds();
     }
 
+    private GameObject[] GetRelevantObjects() {
+        var consumerObjects = this.GetComponentsInChildren<PowerConsumer>().Select(c => c.gameObject).ToArray();
+        var routerObjects = this.GetComponentsInChildren<Router>().Select(c => c.gameObject).ToArray();
+        return consumerObjects.Concat(routerObjects).Distinct().ToArray();
+    }
+
     void CalculateBoundsAndChilds()
     {
-        prevChildCount = transform.childCount;
-        Transform[] childTransforms = new Transform[transform.childCount];
-        Vector3Int[] voxelPositions = new Vector3Int[transform.childCount];
-        for (int i = 0; i < transform.childCount; i++)
+        var relevantObjects = GetRelevantObjects();
+        prevChildCount = relevantObjects.Length;
+
+        Transform[] childTransforms = new Transform[relevantObjects.Length];
+        Vector3Int[] voxelPositions = new Vector3Int[relevantObjects.Length];
+        for (int i = 0; i < relevantObjects.Length; i++)
         {
-            childTransforms[i] = transform.GetChild(i);
-            var pos = childTransforms[i].position;
+            childTransforms[i] = relevantObjects[i].transform;
+            var pos = Quaternion.Inverse(transform.rotation).normalized * childTransforms[i].position;
             voxelPositions[i] = Vector3Int.RoundToInt(pos);
         }
         var xMin = voxelPositions.Select(v => v.x).Min();
@@ -89,7 +97,7 @@ public class Chunk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (prevChildCount != transform.childCount)
+        if (prevChildCount != GetRelevantObjects().Length)
         {
             CalculateBoundsAndChilds();
         }
