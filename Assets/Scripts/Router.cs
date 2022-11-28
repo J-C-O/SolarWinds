@@ -11,6 +11,8 @@ public class Router : MonoBehaviour
     public PowerType inputType;
     [Tooltip("Power type, which is output by this router. Use multiple routers if multiple power types shall be routed.")]
     public PowerType outputType;
+    [Tooltip("If set the router emits power even if no input is powered.")]
+    public bool alwaysPowered;
 
     private Chunk chunk;
 
