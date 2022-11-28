@@ -75,6 +75,10 @@ public class Raycaster
                 // router has no output in the relevant direction, so ignore the router
                 continue;
             }
+            // router is relevant for us, check if it does not need any inputs
+            if (router.alwaysPowered) {
+                return true;
+            }
             // router is relevant for us, so create a raycast for each of it's inputs
             foreach (var input in router.inputVectors)
             {
