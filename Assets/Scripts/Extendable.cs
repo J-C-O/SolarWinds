@@ -59,4 +59,18 @@ public class Extendable : MonoBehaviour
         }
         return index;
     }
+
+    //remove function on right click (somehow it removes everything that will be right clicked)
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var hit = new RaycastHit();
+            if(Physics.Raycast(ray, out hit))
+            {
+                Destroy(hit.transform.gameObject);
+            }
+        }
+    }
 }

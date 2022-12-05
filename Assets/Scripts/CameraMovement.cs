@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
@@ -33,5 +34,28 @@ public class CameraMovement : MonoBehaviour
 
             previousPosition = newPosition;
         }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            /*
+            GetComponent<Transform>().position = new Vector3(
+                    transform.position.x,
+                    transform.position.y - .3f,
+                    transform.position.z - .3f
+                );
+            */
+            cam.fieldOfView--;
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            /*
+            GetComponent<Transform>().position = new Vector3(
+                    transform.position.x,
+                    transform.position.y + .3f,
+                    transform.position.z + .3f
+                );
+            */
+            cam.fieldOfView++;
+        }
+        
     }
 }
