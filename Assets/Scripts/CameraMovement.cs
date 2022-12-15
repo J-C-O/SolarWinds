@@ -7,9 +7,15 @@ public class CameraMovement : MonoBehaviour
     
     [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
-    [SerializeField] private float distanceToTarget = 2;
+    [SerializeField] private float minDistance = 2;
+    [SerializeField] private float maxDistance = 15;
+    [SerializeField] private float distanceToTarget = 3;
 
     private Vector3 previousPosition;
+
+    private void Awake() {
+        Camera.main.transform.Translate(new Vector3(0, 0, -distanceToTarget));
+    }
 
     private void Update()
     {
@@ -37,7 +43,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            if (distanceToTarget > 2) {
+            if (distanceToTarget > minDistance) {
                 distanceToTarget -= 1;
                 Camera.main.transform.Translate(new Vector3(0, 0, 1));
             }
@@ -45,7 +51,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            if (distanceToTarget < 15) {
+            if (distanceToTarget < maxDistance) {
                 distanceToTarget += 1;
                 Camera.main.transform.Translate(new Vector3(0, 0, -1));
             }
