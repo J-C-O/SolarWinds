@@ -16,3 +16,6 @@ MonoBehaviour:
   ItemName: Mirror
   itemIcon: {fileID: 21300000, guid: 7000f042124d2d64fb90627d63db10a7, type: 3}
   Value: 0
+  PowerType: 0
+  IsActive: 0
+  prefab: {fileID: 8411357073909158996, guid: 3f66433bb09224f3096b61983948a510, type: 3}

@@ -64,6 +64,10 @@ public class Extendable : MonoBehaviour
     }
 
     void placeBlock(bool preview) {
+        if (place == null) {
+            // cant place anything, return fast
+            return;
+        }
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         var hit = new RaycastHit();
         if (!Physics.Raycast(ray, out hit))
@@ -95,6 +99,15 @@ public class Extendable : MonoBehaviour
         // already something placed => do nothing
         if (chunk.GameObjectAt(newPos) != null) {
             return;
+        }
+        Instantiate(place, newPos, hit.transform.rotation, chunk.transform);
+        // clear from inventory
+        var inventory = InventoryManager.Instance;
+        if (inventory != null && !preview) {
+            if (inventory.Selected != null) {
+                inventory.Remove(inventory.Selected);
+            }
+            inventory.Selected = null;
         }
 
         // adjust position height depending on type of object

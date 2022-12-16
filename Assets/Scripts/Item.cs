@@ -15,4 +15,5 @@ public class Item : ScriptableObject
 
     public PowerType PowerType;
     public bool IsActive;
+    public GameObject prefab;
 }
