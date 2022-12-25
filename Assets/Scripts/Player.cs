@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
         PlayerID = id;
         SetIsActive(false);
     }
+    
     public bool GetIsActive()
     {
         return isActive;

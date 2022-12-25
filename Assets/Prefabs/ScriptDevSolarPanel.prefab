@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7819437488266864027}
   - component: {fileID: 7819437488266864024}
   - component: {fileID: 7819437488266864025}
+  - component: {fileID: 3456522567372776908}
   m_Layer: 0
   m_Name: ScriptDevSolarPanel
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d7b71f258bfea41248db3f8326d293e5, type: 2}
+  - {fileID: 2100000, guid: b5d326e8911d840c5a4f29b70e658ed0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,3 +114,17 @@ MonoBehaviour:
   bringsPoints: 1
   powerType: 0
   owner: 0
+  IsPowered: 0
+--- !u!114 &3456522567372776908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819437488266864023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70481993ba350e84cb3f68f71e5f88c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: {fileID: 11400000, guid: defbe7ae4c9b3b9449abf5d49cfe14e4, type: 2}

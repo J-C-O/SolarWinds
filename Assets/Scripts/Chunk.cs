@@ -109,4 +109,8 @@ public class Chunk : MonoBehaviour
             CalculateBoundsAndChilds();
         }
     }
+
+    public int CountPower(int owner) {
+        return this.GetComponentsInChildren<PowerConsumer>().Where(pc => pc.owner == owner && pc.bringsPoints && pc.IsPowered).Count();
+    }
 }
