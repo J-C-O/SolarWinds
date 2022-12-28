@@ -7,9 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.GMInstance.UpdateGameState(GameState.RegisterPlayer);
     }
 
+    public void ShowOptions()
+    {
+        GameManager.GMInstance.UpdateGameState(GameState.GameOptions);
+    }
     public void QuitGame()
     {
         Debug.Log("Quit pressed");

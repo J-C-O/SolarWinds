@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager GMInstance;
+    public static GameManager GMInstance;
+    public int NeededVictoryPoints = 100;
+    public int MaxPlayers = 4;
+    public int MaxItemsPerPlayerInventory = 4;
     public GameState State;
+    private GameState oldState;
+    private GameState nextState;
 
     public static event Action<GameState> OnGameStateChanged;
     public void Awake()
@@ -14,8 +19,16 @@ public class GameManager : MonoBehaviour
         GMInstance = this;
     }
 
+    private void Start()
+    {
+        oldState = GameState.GameStart;
+        nextState = GameState.UndefinedState;
+        UpdateGameState(GameState.GameStart);
+    }
+
     public void UpdateGameState(GameState newState)
     {
+        oldState = State;
         State = newState;
 
         switch (newState)
@@ -35,63 +48,77 @@ public class GameManager : MonoBehaviour
             case GameState.GameEnd:
                 HandleGameEnd();
                 break;
+            case GameState.GameOptions:
+                HandleGameOptions();
+                break;
+            case GameState.UndefinedState:
+                break;
+            case GameState.PlayerTurnRandomCard:
+                HandlePlayerTurnRandomCard();
+                break;
+            case GameState.PlayerTurnPlayerAction:
+                
+                break;
             default:
-                Debug.LogWarning("Unknown GameState");
+                Debug.LogWarning("Unknown GameState: " + newState.ToString());
                 break;
         }
 
         OnGameStateChanged?.Invoke(newState);
     }
 
+    private void HandlePlayerTurnRandomCard()
+    {
+        Debug.Log(State.ToString());
+
+        
+    }
+
+    private void HandleGameOptions()
+    {
+        Debug.Log(State.ToString());
+    }
+
+    public void RestorePrevieousGameState()
+    {
+        nextState = State;
+        UpdateGameState(oldState);
+    }
+
+    public GameState GetLastGameState()
+    {
+        return oldState;
+    }
     //this method contains the logic for the GameStart-State
     private void HandleStartGame()
     {
-        throw new NotImplementedException();
+        Debug.Log(State.ToString());
     }
 
     //this method contains the logic for the RegisterPlayer-State
     private void HandleRegisterPlayer()
     {
-        throw new NotImplementedException();
+        Debug.Log(State.ToString());
     }
 
     //this method contains the logic for the PlayerTurn-State
     private void HandlePlayerTurn()
     {
-        throw new NotImplementedException();
+        Debug.Log(State.ToString());
+        TurnManager.TMInstance.StartTurnBasedRound();
     }
 
     //this method contains the logic for the GamePause-State
     private void HandleGamePause()
     {
-        throw new NotImplementedException();
+        Debug.Log(State.ToString());
     }
 
     //this method contains the logic for the GameEnd-State
     private void HandleGameEnd()
     {
-        throw new NotImplementedException();
+        Debug.Log(State.ToString());
     }
 
 
-    
-
-
-
-
-
-    //Gamestates for papermodel implementation
-    public enum GameState
-    {
-        //at the start the player should see the main menu
-        GameStart,
-        //then the main player should be able to register fellow players
-        RegisterPlayer,
-        //each player has n turns in a game
-        PlayerTurn,
-        //pause menu
-        GamePause,
-        //at the end the player should see the main menu... again
-        GameEnd
-    }
 }
