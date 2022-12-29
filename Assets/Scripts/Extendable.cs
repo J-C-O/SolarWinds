@@ -15,15 +15,18 @@ public class Extendable : MonoBehaviour
     public GameObject place4;
     public GameObject placePreview4;
 
-    private GameObject previewObject = null;
-
+    // can be changed during runtime
     private int selectedObject;
     private float rotationAmount = 0;
     private Quaternion placementRotation = new Quaternion(0, 0, 0, 0);
 
     private GameObject place;
-    private GameObject placePreview;
     private Chunk chunk;
+
+    private GameObject  placePreview1Object;
+    private GameObject  placePreview2Object;
+    private GameObject  placePreview3Object;
+    private GameObject  placePreview4Object;
 
     private void changePlaceObjects(int InputNumber)
     {
@@ -31,22 +34,18 @@ public class Extendable : MonoBehaviour
         {
             case 1:
                 place = place1;
-                placePreview = placePreview1;
                 Debug.Log("Changed to place1");
                 break;
             case 2:
                 place = place2;
-                placePreview = placePreview2;
                 Debug.Log("Changed to place2");
                 break;
             case 3:
                 place = place3;
-                placePreview = placePreview3;
                 Debug.Log("Changed to place3");
                 break;
             case 4:
                 place = place4;
-                placePreview = placePreview4;
                 Debug.Log("Changed to place4");
                 break;
             default:
@@ -56,8 +55,20 @@ public class Extendable : MonoBehaviour
 
     void Start() {
         chunk = GetComponentInParent<Chunk>();
+
+        placePreview1Object = Instantiate(placePreview1, new Vector3(0, 0, 0), placementRotation);
+        placePreview2Object = Instantiate(placePreview2, new Vector3(0, 0, 0), placementRotation);
+        placePreview3Object = Instantiate(placePreview3, new Vector3(0, 0, 0), placementRotation);
+        placePreview4Object = Instantiate(placePreview4, new Vector3(0, 0, 0), placementRotation);
+
+        placePreview1Object.GetComponent<BoxCollider>().enabled = false;
+
+        placePreview1Object.SetActive(true);
+        placePreview2Object.SetActive(false);
+        placePreview3Object.SetActive(false);
+        placePreview4Object.SetActive(false);
+
         place = place1;
-        placePreview = placePreview1;
     }
 
     void OnMouseUp() {
@@ -111,8 +122,17 @@ public class Extendable : MonoBehaviour
             return;
         }
         if (preview) {
-            DestroyImmediate(previewObject);
-            previewObject = Instantiate(placePreview, newPos, placementRotation, chunk.transform);
+            //DestroyImmediate(previewObject);
+            //previewObject = Instantiate(placePreview, newPos, placementRotation, chunk.transform);
+            placePreview1Object.transform.position = newPos;
+            placePreview2Object.transform.position = newPos;
+            placePreview3Object.transform.position = newPos;
+            placePreview4Object.transform.position = newPos;
+
+            placePreview1Object.transform.rotation = placementRotation;
+            placePreview2Object.transform.rotation = placementRotation;
+            placePreview3Object.transform.rotation = placementRotation;
+            placePreview4Object.transform.rotation = placementRotation;
         }
         else {
             Instantiate(place, newPos, placementRotation, chunk.transform);
@@ -121,9 +141,9 @@ public class Extendable : MonoBehaviour
 
     void incrementPlacementRotation(){
         if (rotationAmount >= 1.0f){
-            rotationAmount = 0.2f;
+            rotationAmount = 0.25f;
         } else {
-            rotationAmount += 0.2f;
+            rotationAmount += 0.25f;
         }
         placementRotation = new Quaternion(0, rotationAmount, 0, 1);
     }
@@ -131,9 +151,6 @@ public class Extendable : MonoBehaviour
     //remove function on right click (somehow it removes everything that will be right clicked)
     void Update()
     {
-        if (previewObject != null)
-            DestroyImmediate(previewObject);
-
         if (Input.GetMouseButtonDown(1))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -152,18 +169,38 @@ public class Extendable : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             Debug.Log("1 pressed");
             changePlaceObjects(1);
+
+            placePreview1Object.SetActive(true);
+            placePreview2Object.SetActive(false);
+            placePreview3Object.SetActive(false);
+            placePreview4Object.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             Debug.Log("2 pressed");
             changePlaceObjects(2);
+
+            placePreview1Object.SetActive(false);
+            placePreview2Object.SetActive(true);
+            placePreview3Object.SetActive(false);
+            placePreview4Object.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
             Debug.Log("3 pressed");
             changePlaceObjects(3);
+
+            placePreview1Object.SetActive(false);
+            placePreview2Object.SetActive(false);
+            placePreview3Object.SetActive(true);
+            placePreview4Object.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
             Debug.Log("4 pressed");
             changePlaceObjects(4);
+
+            placePreview1Object.SetActive(false);
+            placePreview2Object.SetActive(false);
+            placePreview3Object.SetActive(false);
+            placePreview4Object.SetActive(true);
         }
         
         
