@@ -23,35 +23,10 @@ public class Extendable : MonoBehaviour
     private GameObject place;
     private Chunk chunk;
 
-    private GameObject  placePreview1Object;
-    private GameObject  placePreview2Object;
-    private GameObject  placePreview3Object;
-    private GameObject  placePreview4Object;
-
-    private void changePlaceObjects(int InputNumber)
-    {
-        switch (InputNumber)
-        {
-            case 1:
-                place = place1;
-                Debug.Log("Changed to place1");
-                break;
-            case 2:
-                place = place2;
-                Debug.Log("Changed to place2");
-                break;
-            case 3:
-                place = place3;
-                Debug.Log("Changed to place3");
-                break;
-            case 4:
-                place = place4;
-                Debug.Log("Changed to place4");
-                break;
-            default:
-                break;
-        }
-    }
+    private GameObject placePreview1Object;
+    private GameObject placePreview2Object;
+    private GameObject placePreview3Object;
+    private GameObject placePreview4Object;
 
     void Start() {
         chunk = GetComponentInParent<Chunk>();
@@ -68,7 +43,7 @@ public class Extendable : MonoBehaviour
         placePreview3Object.SetActive(false);
         placePreview4Object.SetActive(false);
 
-        place = place1;
+        selectedObject = 1;
     }
 
     void OnMouseUp() {
@@ -121,6 +96,15 @@ public class Extendable : MonoBehaviour
         if (chunk.GameObjectAt(newPos) != null) {
             return;
         }
+
+        // adjust position height depending on type of object
+        // e.g. fans get spawned directly on the ground, while cubes
+        // get spawned in mid air to be aligned
+        // may need more work depending on used prefabs
+        if (selectedObject != 1){
+            newPos = new Vector3(newPos.x, newPos.y - 0.25f, newPos.z);
+        }
+
         if (preview) {
             //DestroyImmediate(previewObject);
             //previewObject = Instantiate(placePreview, newPos, placementRotation, chunk.transform);
@@ -135,10 +119,27 @@ public class Extendable : MonoBehaviour
             placePreview4Object.transform.rotation = placementRotation;
         }
         else {
-            Instantiate(place, newPos, placementRotation, chunk.transform);
+            switch (selectedObject) 
+            {
+                case 1:
+                    Instantiate(place1, newPos, placementRotation, chunk.transform);
+                    break;
+                case 2:
+                    Instantiate(place2, newPos, placementRotation, chunk.transform);
+                    break;
+                case 3:
+                    Instantiate(place3, newPos, placementRotation, chunk.transform);
+                    break;
+                case 4: 
+                    Instantiate(place4, newPos, placementRotation, chunk.transform);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
+    // rotates the variable by 90° each time
     void incrementPlacementRotation(){
         if (rotationAmount >= 1.0f){
             rotationAmount = 0.25f;
@@ -166,9 +167,10 @@ public class Extendable : MonoBehaviour
 
 
         // Input for changing different placement Objects
+        // hiding all objects exept the active one
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             Debug.Log("1 pressed");
-            changePlaceObjects(1);
+            selectedObject = 1;
 
             placePreview1Object.SetActive(true);
             placePreview2Object.SetActive(false);
@@ -177,7 +179,7 @@ public class Extendable : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             Debug.Log("2 pressed");
-            changePlaceObjects(2);
+            selectedObject = 2;
 
             placePreview1Object.SetActive(false);
             placePreview2Object.SetActive(true);
@@ -186,7 +188,7 @@ public class Extendable : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
             Debug.Log("3 pressed");
-            changePlaceObjects(3);
+            selectedObject = 3;
 
             placePreview1Object.SetActive(false);
             placePreview2Object.SetActive(false);
@@ -195,7 +197,7 @@ public class Extendable : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
             Debug.Log("4 pressed");
-            changePlaceObjects(4);
+            selectedObject = 4;
 
             placePreview1Object.SetActive(false);
             placePreview2Object.SetActive(false);
