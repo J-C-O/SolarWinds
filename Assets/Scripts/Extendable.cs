@@ -7,7 +7,9 @@ public class Extendable : MonoBehaviour
 {
     [Tooltip("The prefab to be placed on click.")]
     public GameObject place;
+    public GameObject placePreview;
 
+    private GameObject previewObject = null;
     private Chunk chunk;
 
     void Start() {
@@ -15,6 +17,23 @@ public class Extendable : MonoBehaviour
     }
 
     void OnMouseUp() {
+        placeBlock(false);
+    }
+
+    int MaxIndex(float[] absolute) {
+        var max = float.NegativeInfinity;
+        int index = -1;
+        for (int i = 0; i < absolute.Length; i++) {
+            var current = absolute[i];
+            if (current > max) {
+                max = current;
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    void placeBlock(bool preview) {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         var hit = new RaycastHit();
         Physics.Raycast(ray, out hit);
@@ -44,25 +63,21 @@ public class Extendable : MonoBehaviour
         if (chunk.GameObjectAt(newPos) != null) {
             return;
         }
-        Instantiate(place, newPos, hit.transform.rotation, chunk.transform);
-    }
-
-    int MaxIndex(float[] absolute) {
-        var max = float.NegativeInfinity;
-        int index = -1;
-        for (int i = 0; i < absolute.Length; i++) {
-            var current = absolute[i];
-            if (current > max) {
-                max = current;
-                index = i;
-            }
+        if (preview) {
+            DestroyImmediate(previewObject);
+            previewObject = Instantiate(placePreview, newPos, hit.transform.rotation, chunk.transform);
         }
-        return index;
+        else {
+            Instantiate(place, newPos, hit.transform.rotation, chunk.transform);
+        }
     }
 
     //remove function on right click (somehow it removes everything that will be right clicked)
     void Update()
     {
+        if (previewObject != null)
+            DestroyImmediate(previewObject);
+
         if (Input.GetMouseButtonDown(1))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -71,6 +86,9 @@ public class Extendable : MonoBehaviour
             {
                 Destroy(hit.transform.gameObject);
             }
+        }
+        else{
+            placeBlock(true);
         }
     }
 }
