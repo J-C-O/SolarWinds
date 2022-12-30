@@ -57,7 +57,10 @@ public class GameManager : MonoBehaviour
                 HandlePlayerTurnRandomCard();
                 break;
             case GameState.PlayerTurnPlayerAction:
-                
+
+                break;
+            case GameState.InventoryUpdate:
+                Debug.Log(State.ToString());
                 break;
             default:
                 Debug.LogWarning("Unknown GameState: " + newState.ToString());
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
     private void HandlePlayerTurn()
     {
         Debug.Log(State.ToString());
-        TurnManager.TMInstance.StartTurnBasedRound();
+        TurnManager.TMInstance.StartRound();
     }
 
     //this method contains the logic for the GamePause-State

@@ -34,6 +34,7 @@ public enum GameState
     //at the end the player should see the main menu... again
     GameEnd,
     GameOptions,
+    InventoryUpdate,
     UndefinedState
 }
 

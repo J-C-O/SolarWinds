@@ -13,13 +13,15 @@ public class Player : ScriptableObject
     private bool isActive;
     public List<Item> inventory = new List<Item>();
 
+
     public Player GetCopy()
     {
         return this;
     }
     internal void RemoveItem(Item item)
     {
-        throw new NotImplementedException();
+        inventory.Remove(item);
+        GameManager.GMInstance.UpdateGameState(GameState.InventoryUpdate);
     }
 
     public void SetPlayerID(int id)
@@ -57,7 +59,7 @@ public class Player : ScriptableObject
             }
             
         }
-        
+        GameManager.GMInstance.UpdateGameState(GameState.InventoryUpdate);
     }
 
     public void SetIsActive(bool value)

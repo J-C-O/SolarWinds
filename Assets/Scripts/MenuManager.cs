@@ -70,6 +70,9 @@ public class MenuManager : MonoBehaviour
             case GameState.PlayerTurnPlayerAction:
                 SwitchView(DrawRandomItemPanel, PlayerInventoryPanel);
                 break;
+            case GameState.InventoryUpdate:
+
+                break;
             default:
                 break;
         }

@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
             Player player = ScriptableObject.Instantiate(ItemManager.IMInstance.player);
             player.PlayerID = uniqueID;
             player.Name = name;
-            player.AddInventory(ItemManager.IMInstance.GetRandomItem());
+            //player.AddInventory(ItemManager.IMInstance.GetRandomItem());
             Players.Add(player);
             ListPlayers();
         }
@@ -134,13 +134,4 @@ public class PlayerManager : MonoBehaviour
         return activePlayer;
     }
 
-    public void ExecuteTurn()
-    {
-        if( activePlayer != null)
-        {
-            //ziehe neue Karte
-            activePlayer.AddInventory(ItemManager.IMInstance.GetRandomItem());
-            //warte auf eingabe und führe diese aus
-        }
-    }
 }

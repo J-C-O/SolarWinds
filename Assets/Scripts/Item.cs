@@ -27,7 +27,7 @@ public class Item : ScriptableObject
         {
             Disown();
             owner = player; 
-            player.AddInventory(this);
+
         }
         else
         {
