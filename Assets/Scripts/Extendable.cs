@@ -100,7 +100,12 @@ public class Extendable : MonoBehaviour
         if (chunk.GameObjectAt(newPos) != null) {
             return;
         }
-        Instantiate(place, newPos, hit.transform.rotation, chunk.transform);
+        var created = Instantiate(place, newPos, hit.transform.rotation, chunk.transform);
+        if (created.GetComponent<Ownable>() == null) {
+            created.AddComponent<Ownable>();
+            // TODO: set current active player
+            created.GetComponent<Ownable>().owner = 0;
+        }
         // clear from inventory
         var inventory = InventoryManager.Instance;
         if (inventory != null && !preview) {

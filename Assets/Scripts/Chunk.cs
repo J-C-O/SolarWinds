@@ -15,7 +15,8 @@ public class Chunk : MonoBehaviour
         CalculateBoundsAndChilds();
     }
 
-    private GameObject[] GetRelevantObjects() {
+    private GameObject[] GetRelevantObjects()
+    {
         var consumerObjects = this.GetComponentsInChildren<PowerConsumer>().Select(c => c.gameObject).ToArray();
         var routerObjects = this.GetComponentsInChildren<Router>().Select(c => c.gameObject).ToArray();
         return consumerObjects.Concat(routerObjects).Distinct().ToArray();
@@ -73,7 +74,8 @@ public class Chunk : MonoBehaviour
     }
 
     // Returns the GameObject at coords in world space if any.
-    public GameObject GameObjectAt(Vector3 coords) {
+    public GameObject GameObjectAt(Vector3 coords)
+    {
         var pos = Quaternion.Inverse(transform.rotation).normalized * coords;
         return GameObjectAt(Vector3Int.RoundToInt(pos));
     }
@@ -110,7 +112,12 @@ public class Chunk : MonoBehaviour
         }
     }
 
-    public int CountPower(int owner) {
-        return this.GetComponentsInChildren<PowerConsumer>().Where(pc => pc.owner == owner && pc.bringsPoints && pc.IsPowered).Count();
+    public int CountPower(int owner)
+    {
+        return this.GetComponentsInChildren<Ownable>()
+                .Where(o => o.owner == owner && o.GetComponent<PowerConsumer>() != null)
+                .Select(o => o.GetComponent<PowerConsumer>())
+                .Where(pc => pc.bringsPoints && pc.IsPowered)
+                .Count();
     }
 }
