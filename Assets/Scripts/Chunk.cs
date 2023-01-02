@@ -117,7 +117,8 @@ public class Chunk : MonoBehaviour
         return this.GetComponentsInChildren<Ownable>()
                 .Where(o => o.owner == owner && o.GetComponent<PowerConsumer>() != null)
                 .Select(o => o.GetComponent<PowerConsumer>())
-                .Where(pc => pc.bringsPoints && pc.IsPowered)
-                .Count();
+                .Where(pc => pc.bringsPoints)
+                .Select(pc => pc.powerPoints)
+                .Sum();
     }
 }

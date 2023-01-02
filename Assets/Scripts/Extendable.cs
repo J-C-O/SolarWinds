@@ -86,7 +86,6 @@ public class Extendable : MonoBehaviour
         
         if (preview) {
             if (this.preview == null) {
-                Debug.Log($"creating preview, id: {this.gameObject.GetInstanceID()}");
                 this.preview = Instantiate(this.place, newPos, placementRotation, chunk.transform);
             }
             this.preview.GetComponent<BoxCollider>().enabled = false;
@@ -95,7 +94,6 @@ public class Extendable : MonoBehaviour
         }
         else {
             DestroyPreview();
-            Debug.Log("creating the real thing");
             var created = Instantiate(place, newPos, placementRotation, chunk.transform);
             if (created.GetComponent<Ownable>() == null) {
                 created.AddComponent<Ownable>();

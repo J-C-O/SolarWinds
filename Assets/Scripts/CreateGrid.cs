@@ -31,21 +31,27 @@ public class CreateGrid : MonoBehaviour
     {
         parentBorder = new GameObject();
         parentBorder.name = "Border";
+        parentBorder.transform.parent = this.transform;
+        parentBorder.transform.localPosition = Vector3.zero;
 
         for (float x = 0f; x < fieldLength; x++) 
         {
             myTransform = new Vector3(x, 0f, 0f);
-            Instantiate(borderBlock, myTransform, Quaternion.identity, parentBorder.transform);
+            var instantiatedBorder = Instantiate(borderBlock, Vector3.zero, Quaternion.identity, parentBorder.transform);
+            instantiatedBorder.transform.localPosition = myTransform;
             myTransform = new Vector3(x, 0f, fieldWidth-1);
-            Instantiate(borderBlock, myTransform, Quaternion.identity, parentBorder.transform);
+            instantiatedBorder = Instantiate(borderBlock, Vector3.zero, Quaternion.identity, parentBorder.transform);
+            instantiatedBorder.transform.localPosition = myTransform;
         }
 
         for (float z = 1f; z < fieldWidth-1; z++) 
         {   
             myTransform = new Vector3(0f, 0f, z);
-            Instantiate(borderBlock, myTransform, Quaternion.identity, parentBorder.transform);
+            var instantiatedBorder = Instantiate(borderBlock, Vector3.zero, Quaternion.identity, parentBorder.transform);
+            instantiatedBorder.transform.localPosition = myTransform;
             myTransform = new Vector3(fieldLength-1, 0f, z);
-            Instantiate(borderBlock, myTransform, Quaternion.identity, parentBorder.transform);
+            instantiatedBorder = Instantiate(borderBlock, Vector3.zero, Quaternion.identity, parentBorder.transform);
+            instantiatedBorder.transform.localPosition = myTransform;
         }
 
 
@@ -55,13 +61,16 @@ public class CreateGrid : MonoBehaviour
     {
         parentField = new GameObject();
         parentField.name = "Field";
+        parentField.transform.parent = this.transform;
+        parentField.transform.localPosition = Vector3.zero;
 
         for (float x = 1f; x < fieldLength-1; x++) 
         {
             for (float z = 1f; z < fieldWidth-1; z++) 
             {   
                 myTransform = new Vector3(x, 0f, z);
-                Instantiate(fieldBlock, myTransform, Quaternion.identity, parentField.transform);
+                var instantiatedField = Instantiate(fieldBlock, Vector3.zero, Quaternion.identity, parentField.transform);
+                instantiatedField.transform.localPosition = myTransform;
             }
         }
 
