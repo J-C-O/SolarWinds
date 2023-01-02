@@ -17,7 +17,7 @@ public class ExtendFromInv : MonoBehaviour
     {
         var inventory = InventoryManager.Instance;
         if (inventory.Selected != null) {
-            extendable.place = inventory.Selected.prefab;
+            extendable.SetPlace(inventory.Selected.prefab);
         } else {
             extendable.place = null;
         }
