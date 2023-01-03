@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fan
   m_EditorClassIdentifier: 
   Id: 3
-  ItemName: Wind-PowerPlant
+  ItemName: Fan
   itemIcon: {fileID: 21300000, guid: 386239d9835f964418b7710a8d8022d4, type: 3}
   Value: 0
   PowerType: 1
