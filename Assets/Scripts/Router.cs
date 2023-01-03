@@ -97,6 +97,9 @@ public class Router : MonoBehaviour
     {
         get
         {
+            if (chunk == null) {
+                return new Vector3Int[0];
+            }
             return Router.RotatedVectorsOf(outputDirections, Quaternion.Inverse(chunk.transform.rotation).normalized * transform.rotation);
         }
     }

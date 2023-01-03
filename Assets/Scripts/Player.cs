@@ -39,8 +39,6 @@ public class Player : ScriptableObject
         return isActive;
     }
 
-
-
     public void AddInventory(Item item)
     {
         if(inventory == null)

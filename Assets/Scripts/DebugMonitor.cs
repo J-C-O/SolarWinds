@@ -36,7 +36,7 @@ public class DebugMonitor : MonoBehaviour
 
     public string GetIsPowered(PowerConsumer consumer)
     {
-        return "[" + consumer.gameObject.name + "] IsPowered:" + consumer.IsPowered.ToString();
+        return "[" + consumer.gameObject.name + "] IsPowered:" + consumer.powerPoints.ToString();
     }
 
     public void SetDebugText()

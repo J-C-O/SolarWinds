@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Raycaster
 {
+    private const int RouterLimit = 8;
     private Chunk chunk;
 
     public Raycaster(Chunk chunk)
@@ -9,9 +10,17 @@ public class Raycaster
         this.chunk = chunk;
     }
 
+    public bool Cast(Vector3Int start, Vector3Int initalDirection, PowerType powerType) {
+        return CastInternal(start, initalDirection, powerType, 0);
+    }
+
     // Returns whether start is powered by the given sort
-    public bool Cast(Vector3Int start, Vector3Int initalDirection, PowerType powerType)
+    private bool CastInternal(Vector3Int start, Vector3Int initalDirection, PowerType powerType, int routerCount)
     {
+        // interrupt endless routing loops
+        if (routerCount >= RouterLimit) {
+            return false;
+        }
         Vector3Int currentPos = start;
         while (true)
         {
@@ -28,7 +37,7 @@ public class Raycaster
                 continue;
             }
 
-            if (IsPoweredByRouters(currentObj, initalDirection, powerType)) {
+            if (IsPoweredByRouters(currentObj, initalDirection, powerType, routerCount)) {
                 return true;
             }
             // TODO: a router currently does not consume power
@@ -50,12 +59,11 @@ public class Raycaster
                     return false;
                 }
             }
-            // consumers of unrelevant types
-            continue;
+            // consumers of unrelevant types => so continue
         }
     }
 
-    public bool IsPoweredByRouters(GameObject obj, Vector3Int direction, PowerType powerType)
+    public bool IsPoweredByRouters(GameObject obj, Vector3Int direction, PowerType powerType, int routerCount)
     {
         var currentRouters = obj.GetComponents<Router>();
         if (currentRouters == null)
@@ -83,7 +91,7 @@ public class Raycaster
             foreach (var input in router.inputVectors)
             {
                 Vector3Int pos = Vector3Int.RoundToInt(obj.transform.position);
-                if (Cast(pos, -input, router.inputType))
+                if (CastInternal(pos, -input, router.inputType, routerCount + 1))
                 {
                     // router is powered and so are we
                     return true;

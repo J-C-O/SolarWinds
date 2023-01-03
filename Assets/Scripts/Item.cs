@@ -16,7 +16,7 @@ public class Item : ScriptableObject
     [SerializeField]
     protected Sprite itemIcon;
     public Sprite ItemIcon { get => itemIcon; set => itemIcon = value; }
-
+    public GameObject prefab;
     
     public bool IsActive;
     protected Player owner;

@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public List<Item> Items = new List<Item>();
 
+    public Item Selected;
     public Transform ItemContent;
     public GameObject InventoryItem;
 
@@ -34,16 +35,19 @@ public class InventoryManager : MonoBehaviour
     public void Add(Item item)
     {
         Items.Add(item);
+        ListItems();
     }
 
     public void Remove(Item item)
     {
         Items.Remove(item);
+        ListItems();
     }
     public void CleanItemContent()
     {
         foreach (Transform item in ItemContent)
         {
+            item.gameObject.SetActive(false);
             Destroy(item.gameObject);
         }
     }
@@ -89,11 +93,12 @@ public class InventoryManager : MonoBehaviour
 
     public void SetInventoryItems()
     {
-        InventoryItems = new InventoryItemController[Items.Count];
+        var controllers = ItemContent.GetComponentsInChildren<InventoryItemController>();
+        InventoryItems = new InventoryItemController[controllers.Length];
 
         for(int i = 0; i < Items.Count; i++)
         {
-            InventoryItems[i] = ItemContent.GetComponentInChildren<InventoryItemController>();
+            InventoryItems[i] = controllers[i];
             InventoryItems[i].AddItem(Items[i]);
         }
     }
