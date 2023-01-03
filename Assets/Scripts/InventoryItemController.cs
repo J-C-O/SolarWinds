@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class InventoryItemController : MonoBehaviour
 {
-    Item item;
+    protected Item item;
     public Button RemoveButton;
-    public void RemoveItem()
+    public virtual void RemoveItem()
     {
         InventoryManager.Instance.Remove(item);
 
         Destroy(gameObject);
     }
-    public void AddItem(Item newItem)
+    public virtual void AddItem(Item newItem)
     {
         item = newItem;
     }

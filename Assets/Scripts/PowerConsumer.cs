@@ -10,7 +10,15 @@ public class PowerConsumer : MonoBehaviour
     public int owner;
     private Chunk chunk;
     public bool IsPowered;
-
+    public double Points {
+        get {
+            if (IsPowered && bringsPoints){
+                return 10;
+            }else{
+                return 0;
+            }             
+        }
+    }
     public void Start()
     {
         this.chunk = GetComponentInParent<Chunk>();
@@ -34,4 +42,11 @@ public class PowerConsumer : MonoBehaviour
         IsPowered = right || left || forward || back || up || down;
         //Debug.Log("["+ gameObject.name +"]isPowered: " + IsPowered.ToString());
     }
+
+    public void SetOwner(int ownerID)
+    {
+        owner = ownerID;
+    }
+
+    
 }

@@ -4,6 +4,7 @@ public enum PowerType
 {
     Solar = 0,
     Wind = 1,
+    EveryPower = 2
 }
 
 [Flags]
@@ -17,4 +18,34 @@ public enum Directions : uint {
     Down = 32,
 }
 
+//Gamestates for papermodel implementation
+public enum GameState
+{
+    //at the start the player should see the main menu
+    GameStart,
+    //then the main player should be able to register fellow players
+    RegisterPlayer,
+    //each player has n turns in a game
+    PlayerTurn,
+    PlayerTurnRandomCard,
+    PlayerTurnPlayerAction,
+    //pause menu
+    GamePause,
+    //at the end the player should see the main menu... again
+    GameEnd,
+    GameOptions,
+    InventoryUpdate,
+    UndefinedState
+}
 
+public enum PaperModelItem
+{
+    SolarConsumer = 0,
+    WindConsumer = 1,
+    Mirror = 4,
+    Trash = 8,
+    FridaysForFuture = 16,
+    ChangeSunDirection = 32,
+    ChangeWindDirection = 64,
+    DefaultItem = 128
+}
