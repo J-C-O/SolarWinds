@@ -80,7 +80,6 @@ public class MenuManager : MonoBehaviour
             case GameState.UndefinedState:
                 break;
             case GameState.PlayerTurnPlayerAction:
-                //BackGroundImg.SetActive(false);
                 SwitchView(DrawRandomItemPanel, PlayerInventoryPanel);
                 break;
             case GameState.InventoryUpdate:

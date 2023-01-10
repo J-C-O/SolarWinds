@@ -7,8 +7,10 @@ using UnityEditor;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public static PlayerInventory PIInstance;
     public Image IconActiveItem;
     public Transform ItemStore;
+    public Item SelectedItem;
     //public GameObject ItemSlotTemplate;
     public GameObject ItemSlotTemplate
     {
@@ -41,6 +43,10 @@ public class PlayerInventory : MonoBehaviour
     }
     public PlayerInventoryItemController[] InventoryItems;
 
+    public void Awake()
+    {
+        PIInstance = this;
+    }
     private GameObject GetInventorySlotTemplate()
     {
         GameObject template = new GameObject();
@@ -79,7 +85,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (state == GameState.InventoryUpdate)
         {
-            if (GetActiveItem().ItemName != null)
+            if (GetActiveItem() != null)
             {
                 IconActiveItem.sprite = GetActiveItem().ItemIcon;
                 //nicht entfernen, Inventar muss doppelt bereinigt werden, damit es funktioniert
@@ -89,6 +95,12 @@ public class PlayerInventory : MonoBehaviour
             else
             {
                 Debug.Log("No active Item");
+                IconActiveItem.sprite = null;
+                //if(GetActivePlayer().inventory.Count > 0)
+                //{
+                //    GetActivePlayer().inventory[0] = GetActivePlayer().inventory[1];
+                //    GetActivePlayer().RemoveItem(GetActivePlayer().inventory[1]);
+                //}
             }
         }
     }
@@ -135,7 +147,7 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log(string.Format("Childs of ItemStore after cleaning: {0}", (ItemStore.childCount).ToString()));
     }
 
-    private Player GetActivePlayer()
+    public Player GetActivePlayer()
     {
         if (PlayerManager.PMInstance.activePlayer == null)
         {
@@ -144,14 +156,17 @@ public class PlayerInventory : MonoBehaviour
         return PlayerManager.PMInstance.activePlayer;
     }
 
-    private Item GetActiveItem()
+    public Item GetActiveItem()
     {
-        if (PlayerManager.PMInstance.activePlayer.inventory[0] == null)
+        if (PlayerManager.PMInstance.activePlayer.inventory.Count == 0 || PlayerManager.PMInstance.activePlayer.inventory[0] == null)
         {
             return null;
         }
-        return GetActivePlayer().inventory[0];
-        
+        return GetActivePlayer().inventory[0];      
     }
 
+    public void SetSelectedItem()
+    {
+        SelectedItem = GetActiveItem();
+    }
 }
