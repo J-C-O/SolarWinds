@@ -28,7 +28,16 @@ public class ConfigurationManager : MonoBehaviour
                 PlayerInventorySlotIcon_Height = 122;
 
     public int
-                MaxPlayerInventoryItems = 4;
+                MaxPlayerInventoryItems = 4,
+                GameBoard_Width = 11,
+                GameBoard_Height = 11;
     public string
                 TextTurnOfPlayer = "Turn of ";
+
+    public Color
+                DefaultTileColorBase,
+                DefaultTileColorOffset,
+                DeactiveTileColorBase,
+                DeactiveTileColorOffset;
+                
 }
