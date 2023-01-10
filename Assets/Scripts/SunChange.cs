@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class SunChange : MonoBehaviour
 {
-    
     public GameObject DirectionalLight;
+
+    public GameObject SunArrowUp;
+    public GameObject SunArrowDown;
+    public GameObject SunArrowRight;
+    public GameObject SunArrowLeft;
 
     private int sunState = 0;
 
@@ -21,6 +25,7 @@ public class SunChange : MonoBehaviour
        if (Input.GetKeyDown("s")) {
             incrementSunState();
             Debug.Log("Sun moved");
+            Debug.Log(sunState);
         } 
     }
 
@@ -33,15 +38,31 @@ public class SunChange : MonoBehaviour
         switch (sunState) {
             case 1:
                 DirectionalLight.transform.rotation = Quaternion.Euler(50, 0, 0);
+                SunArrowUp.SetActive(false);
+                SunArrowDown.SetActive(false);
+                SunArrowRight.SetActive(true);
+                SunArrowLeft.SetActive(false);
                 break;
             case 2:
                 DirectionalLight.transform.rotation = Quaternion.Euler(50, -90, 0);
+                SunArrowUp.SetActive(true);
+                SunArrowDown.SetActive(false);
+                SunArrowRight.SetActive(false);
+                SunArrowLeft.SetActive(false);
                 break;
             case 3:
                 DirectionalLight.transform.rotation = Quaternion.Euler(125, 0, 0);
+                SunArrowUp.SetActive(false);
+                SunArrowDown.SetActive(false);
+                SunArrowRight.SetActive(false);
+                SunArrowLeft.SetActive(true);
                 break;
             case 4:
                 DirectionalLight.transform.rotation = Quaternion.Euler(125, -90, 0);
+                SunArrowUp.SetActive(false);
+                SunArrowDown.SetActive(true);
+                SunArrowRight.SetActive(false);
+                SunArrowLeft.SetActive(false);
                 break;
         }
     }
