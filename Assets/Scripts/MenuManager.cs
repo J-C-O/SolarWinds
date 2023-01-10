@@ -6,7 +6,17 @@ using System.Linq;
 public class MenuManager : MonoBehaviour
 {
     [field: SerializeField]
-    public GameObject MainMenuPanel, OptionMenuPanel, BackGroundImg, RegisterPlayerPanel, PauseMenuPanel, PlayerTurnPanel, GameEndPanel, DrawRandomItemPanel, PlayerInventoryPanel;
+    public GameObject 
+                MainMenuPanel, 
+                OptionMenuPanel, 
+                BackGroundImg, 
+                RegisterPlayerPanel, 
+                PauseMenuPanel, 
+                PlayerTurnPanel, 
+                GameEndPanel, 
+                DrawRandomItemPanel, 
+                GameBoard,
+                PlayerInventoryPanel;
     private GameObject currentView;
 
     public void Awake()
@@ -42,6 +52,7 @@ public class MenuManager : MonoBehaviour
             case GameState.PlayerTurn:
                 BackGroundImg.SetActive(false);
                 SwitchView(currentView, PlayerTurnPanel);
+                GameBoard.SetActive(true);
                 GameManager.GMInstance.UpdateGameState(GameState.PlayerTurnRandomCard);
                 break;
             case GameState.GamePause:
@@ -61,6 +72,7 @@ public class MenuManager : MonoBehaviour
                 SwitchView(currentView, OptionMenuPanel);
                 break;
             case GameState.PlayerTurnRandomCard:
+                //BackGroundImg.SetActive(false);
                 PlayerInventoryPanel.SetActive(false);
                 DrawRandomItemPanel.SetActive(true);
                 //SwitchView(currentView, DrawRandomItemPanel);
@@ -68,6 +80,7 @@ public class MenuManager : MonoBehaviour
             case GameState.UndefinedState:
                 break;
             case GameState.PlayerTurnPlayerAction:
+                //BackGroundImg.SetActive(false);
                 SwitchView(DrawRandomItemPanel, PlayerInventoryPanel);
                 break;
             case GameState.InventoryUpdate:
