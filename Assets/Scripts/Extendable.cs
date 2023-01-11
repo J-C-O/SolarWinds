@@ -98,7 +98,11 @@ public class Extendable : MonoBehaviour
             if (created.GetComponent<Ownable>() == null) {
                 created.AddComponent<Ownable>();
                 //set current active player
-                created.GetComponent<Ownable>().owner = PlayerManager.PMInstance.activePlayer.PlayerID;
+                int owner = 0;
+                if (PlayerManager.PMInstance != null) {
+                    owner = PlayerManager.PMInstance.activePlayer.PlayerID;
+                }
+                owner = created.GetComponent<Ownable>().owner;
             }
             // clear from inventory
             if(PlayerInventory.PIInstance != null)
@@ -111,11 +115,14 @@ public class Extendable : MonoBehaviour
             }
             if(InventoryManager.Instance != null)
             {
+                Debug.Log("1");
                 var inventory = InventoryManager.Instance;
-                if (inventory != null && !preview)
+                if (inventory != null)
                 {
+                    Debug.Log("2");
                     if (inventory.Selected != null)
                     {
+                        Debug.Log("removing");
                         inventory.Remove(inventory.Selected);
                     }
                     inventory.Selected = null;
