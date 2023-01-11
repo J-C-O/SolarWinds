@@ -29,32 +29,36 @@ public class Chunk : MonoBehaviour
 
         Transform[] childTransforms = new Transform[relevantObjects.Length];
         Vector3Int[] voxelPositions = new Vector3Int[relevantObjects.Length];
-        for (int i = 0; i < relevantObjects.Length; i++)
+
+        if (relevantObjects.Length > 0)
         {
-            childTransforms[i] = relevantObjects[i].transform;
-            var pos = Quaternion.Inverse(transform.rotation).normalized * childTransforms[i].position;
-            voxelPositions[i] = Vector3Int.RoundToInt(pos);
-        }
-        var xMin = voxelPositions.Select(v => v.x).Min();
-        var yMin = voxelPositions.Select(v => v.y).Min();
-        var zMin = voxelPositions.Select(v => v.z).Min();
+            for (int i = 0; i < relevantObjects.Length; i++)
+            {
+                childTransforms[i] = relevantObjects[i].transform;
+                var pos = Quaternion.Inverse(transform.rotation).normalized * childTransforms[i].position;
+                voxelPositions[i] = Vector3Int.RoundToInt(pos);
+            }
+            var xMin = voxelPositions.Select(v => v.x).Min();
+            var yMin = voxelPositions.Select(v => v.y).Min();
+            var zMin = voxelPositions.Select(v => v.z).Min();
 
-        var xMax = voxelPositions.Select(v => v.x).Max();
-        var yMax = voxelPositions.Select(v => v.y).Max();
-        var zMax = voxelPositions.Select(v => v.z).Max();
+            var xMax = voxelPositions.Select(v => v.x).Max();
+            var yMax = voxelPositions.Select(v => v.y).Max();
+            var zMax = voxelPositions.Select(v => v.z).Max();
 
-        var boundsMin = new Vector3Int(xMin, yMin, zMin);
-        var boundsMax = new Vector3Int(xMax, yMax, zMax);
-        bounds = new BoundsInt(boundsMin, boundsMax - boundsMin);
+            var boundsMin = new Vector3Int(xMin, yMin, zMin);
+            var boundsMax = new Vector3Int(xMax, yMax, zMax);
+            bounds = new BoundsInt(boundsMin, boundsMax - boundsMin);
 
-        childs = new Transform[bounds.size.x + 1 + 2 * buffer.x, bounds.size.y + 1 + 2 * buffer.y, bounds.size.z + 1 + 2 * buffer.z];
-        for (int i = 0; i < childTransforms.Length; i++)
-        {
-            var transform = childTransforms[i];
-            var voxelPos = voxelPositions[i];
-            var index = voxelPos - bounds.min;
-            childs[index.x, index.y, index.z] = transform;
-        }
+            childs = new Transform[bounds.size.x + 1 + 2 * buffer.x, bounds.size.y + 1 + 2 * buffer.y, bounds.size.z + 1 + 2 * buffer.z];
+            for (int i = 0; i < childTransforms.Length; i++)
+            {
+                var transform = childTransforms[i];
+                var voxelPos = voxelPositions[i];
+                var index = voxelPos - bounds.min;
+                childs[index.x, index.y, index.z] = transform;
+            }
+        }  
     }
 
     // Returns the GameObject at coords in grid space if any.

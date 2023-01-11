@@ -97,16 +97,35 @@ public class Extendable : MonoBehaviour
             var created = Instantiate(place, newPos, placementRotation, chunk.transform);
             if (created.GetComponent<Ownable>() == null) {
                 created.AddComponent<Ownable>();
-                // TODO: set current active player
-                created.GetComponent<Ownable>().owner = 0;
+                //set current active player
+                created.GetComponent<Ownable>().owner = PlayerManager.PMInstance.activePlayer.PlayerID;
             }
             // clear from inventory
-            var inventory = InventoryManager.Instance;
-            if (inventory != null && !preview) {
-                if (inventory.Selected != null) {
-                    inventory.Remove(inventory.Selected);
+            if(PlayerInventory.PIInstance != null)
+            {
+                if(PlayerInventory.PIInstance.SelectedItem != null)
+                {
+                    PlayerInventory.PIInstance.GetActivePlayer().RemoveItem(PlayerInventory.PIInstance.SelectedItem);
                 }
-                inventory.Selected = null;
+                PlayerInventory.PIInstance.SelectedItem = null;
+            }
+            if(InventoryManager.Instance != null)
+            {
+                var inventory = InventoryManager.Instance;
+                if (inventory != null && !preview)
+                {
+                    if (inventory.Selected != null)
+                    {
+                        inventory.Remove(inventory.Selected);
+                    }
+                    inventory.Selected = null;
+                }
+            }
+            
+            //finish turn
+            if(TurnManager.TMInstance != null)
+            {
+                TurnManager.TMInstance.NextPlayer();
             }
         }
     }
@@ -145,15 +164,6 @@ public class Extendable : MonoBehaviour
         if (this.placeChanged) {
             DestroyPreview();
             placeChanged = false;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            var hit = new RaycastHit();
-            if(Physics.Raycast(ray, out hit))
-            {
-                Destroy(hit.transform.gameObject);
-            }
         }
         //Advance Rotation of placement object
         if (Input.GetKeyDown("r")) {

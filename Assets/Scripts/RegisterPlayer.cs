@@ -15,9 +15,8 @@ public class RegisterPlayer : MonoBehaviour
     {
         if ((inputValue != null) || inputValue != "")
         {
-            
-
             PlayerManager.PMInstance.AddPlayer(inputValue);
+            NameInput.text = "";
         }
         else
         {

@@ -20,20 +20,24 @@ public class TurnManager : MonoBehaviour
     }
 
     //depracted, todo delete after tests
-    public void StartTurnBasedRound()
-    {
-        bool flag = false;
-        while (!flag)
-        {
-            for(int index = 0; index < TurnsPerRound; index++)
-            {
-                PlayerManager.PMInstance.SetActivePlayer(index);
-                randomItem = ItemManager.IMInstance.GetRandomItem();
-                GameManager.GMInstance.UpdateGameState(GameState.PlayerTurnRandomCard);
+    //public void StartTurnBasedRound()
+    //{
+    //    bool flag = false;
+    //    while (!flag)
+    //    {
+    //        for(int index = 0; index < TurnsPerRound; index++)
+    //        {
+    //            PlayerManager.PMInstance.SetActivePlayer(index);
+    //            randomItem = ItemManager.IMInstance.GetRandomItem();
+    //            GameManager.GMInstance.UpdateGameState(GameState.PlayerTurnRandomCard);
 
-            }
-            flag = VictoryConditionMet();
-        }
+    //        }
+    //        flag = VictoryConditionMet();
+    //    }
+    //}
+    public void InitRound()
+    {
+        PlayerIndex = 0;
     }
     public void StartRound()
     {

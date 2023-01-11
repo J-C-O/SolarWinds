@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 1664913424999633159}
   - component: {fileID: 6138496794978075590}
   - component: {fileID: 1693100240552758195}
+  - component: {fileID: 7487064775167301932}
+  - component: {fileID: 4872299765872728777}
+  - component: {fileID: -8635042411862897323}
+  - component: {fileID: -8289679283562068305}
   m_Layer: 0
   m_Name: Grassblock
   m_TagString: Untagged
@@ -97,3 +101,58 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7487064775167301932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744583227255718928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323eb7c2113184c338b130b0ad42cf40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  place: {fileID: 0}
+--- !u!114 &4872299765872728777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744583227255718928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7075e9fef1115b840a6aab52ac5ab31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8635042411862897323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744583227255718928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0e8a3f2b83d41fd81761036eff96cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bringsPoints: 0
+  powerType: 0
+  powerPoints: 0
+--- !u!114 &-8289679283562068305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744583227255718928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0e8a3f2b83d41fd81761036eff96cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bringsPoints: 0
+  powerType: 1
+  powerPoints: 0

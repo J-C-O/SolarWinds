@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,7 +12,37 @@ public class GameManager : MonoBehaviour
     public int MaxItemsPerPlayerInventory = 4;
     public GameState State;
     private GameState oldState;
+    private GameState lastIngameState;
     private GameState nextState;
+    private GameObject fieldCenter;
+    [SerializeField]
+    private GameObject gameBoard;
+    [SerializeField]
+    private GameObject cameraTarget;
+
+    public GameObject FieldCenter { 
+        get => fieldCenter;
+        set {
+            fieldCenter = value;
+            UpdateCamTarget(FieldCenter);
+        } 
+    }
+
+
+    private GameState[] NoInGameStates = {
+        GameState.GameOptions,
+        GameState.GamePause,
+        GameState.GameStart,
+        GameState.GameEnd,
+        GameState.RegisterPlayer
+    };
+    private void UpdateCamTarget(GameObject fieldCenter)
+    {
+        if(fieldCenter != null && cameraTarget != null)
+        {
+            cameraTarget.transform.position = fieldCenter.transform.position;
+        }
+    }
 
     public static event Action<GameState> OnGameStateChanged;
     public void Awake()
@@ -26,8 +57,14 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.GameStart);
     }
 
+
+    #region Manipulate GameState Methods
     public void UpdateGameState(GameState newState)
     {
+        if (NoInGameStates.Contains(newState) && !NoInGameStates.Contains(State))
+        {
+            lastIngameState = State;
+        }
         oldState = State;
         State = newState;
 
@@ -60,7 +97,7 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameState.InventoryUpdate:
-                Debug.Log(State.ToString());
+                HandleInventoryUpdate();
                 break;
             default:
                 Debug.LogWarning("Unknown GameState: " + newState.ToString());
@@ -69,33 +106,55 @@ public class GameManager : MonoBehaviour
 
         OnGameStateChanged?.Invoke(newState);
     }
-
-    private void HandlePlayerTurnRandomCard()
-    {
-        Debug.Log(State.ToString());
-
-        
-    }
-
-    private void HandleGameOptions()
-    {
-        Debug.Log(State.ToString());
-    }
-
-    public void RestorePrevieousGameState()
-    {
-        nextState = State;
-        UpdateGameState(oldState);
-    }
-
+    
     public GameState GetLastGameState()
     {
         return oldState;
     }
+    
+    public void RestorePrevieousGameState()
+    {
+        nextState = State;
+        if(oldState == GameState.GameOptions)
+        {
+            UpdateGameState(lastIngameState);
+        }
+        else
+        {
+            UpdateGameState(oldState);
+        }
+        
+    }
+    #endregion
+
+    #region HandleGameState Methods
+    //this method contains the logic for the HandleInventoryUpdate-State
+    private void HandleInventoryUpdate()
+    {
+        Debug.Log(State.ToString());
+        if (!gameBoard.activeSelf) gameBoard.SetActive(true);
+        UpdateGameState(GameState.PlayerTurnPlayerAction);
+    }
+
+    //this method contains the logic for the PlayerTurnRandomCard-State
+    private void HandlePlayerTurnRandomCard()
+    {
+        Debug.Log(State.ToString());
+    }
+
+    //this method contains the logic for the GameOptions-State
+    private void HandleGameOptions()
+    {
+        Debug.Log(State.ToString());
+    }
+    
     //this method contains the logic for the GameStart-State
     private void HandleStartGame()
     {
         Debug.Log(State.ToString());
+        //initalize/reset Game
+        PlayerManager.PMInstance.InitPlayers();
+        TurnManager.TMInstance.InitRound();
     }
 
     //this method contains the logic for the RegisterPlayer-State
@@ -108,6 +167,7 @@ public class GameManager : MonoBehaviour
     private void HandlePlayerTurn()
     {
         Debug.Log(State.ToString());
+        
         TurnManager.TMInstance.StartRound();
     }
 
@@ -122,5 +182,5 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(State.ToString());
     }
-
+    #endregion
 }
