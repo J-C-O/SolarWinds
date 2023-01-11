@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8411357073909159000
 MeshFilter:
@@ -157,3 +157,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 6f377987b6e944b35950c600314cc25a, type: 2}
+  requiredForDestroy: {fileID: 11400000, guid: a043a455ecd8d7f48acff724eb2235ce, type: 2}
+  skipOwnerCheck: 1
