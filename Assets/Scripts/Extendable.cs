@@ -97,8 +97,8 @@ public class Extendable : MonoBehaviour
             var created = Instantiate(place, newPos, placementRotation, chunk.transform);
             if (created.GetComponent<Ownable>() == null) {
                 created.AddComponent<Ownable>();
-                // TODO: set current active player
-                created.GetComponent<Ownable>().owner = 0;
+                //set current active player
+                created.GetComponent<Ownable>().owner = PlayerManager.PMInstance.activePlayer.PlayerID;
             }
             // clear from inventory
             if(PlayerInventory.PIInstance != null)
@@ -122,6 +122,11 @@ public class Extendable : MonoBehaviour
                 }
             }
             
+            //finish turn
+            if(TurnManager.TMInstance != null)
+            {
+                TurnManager.TMInstance.NextPlayer();
+            }
         }
     }
 

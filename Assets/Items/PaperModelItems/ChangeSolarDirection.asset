@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 837f308f9f0d45d43b069dd0ed97c27d, type: 3}
-  m_Name: FFF
+  m_Name: ChangeSolarDirection
   m_EditorClassIdentifier: 
   InputPower: 0
-  ItemType: 16
+  ItemType: 32
   Value: 0
-  itemIcon: {fileID: 21300000, guid: 7d3aa5d06a8fb5d40b9ba591a3058015, type: 3}
+  itemIcon: {fileID: 21300000, guid: c1ae0bf7ac86dcb4abfa7f401de67648, type: 3}
   prefab: {fileID: 0}
   IsActive: 0

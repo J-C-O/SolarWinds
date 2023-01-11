@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Options()
     {
-        Resume();
+        PauseMenuUI.SetActive(false);
         GameManager.GMInstance.UpdateGameState(GameState.GameOptions);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int MaxItemsPerPlayerInventory = 4;
     public GameState State;
     private GameState oldState;
+    private GameState lastIngameState;
     private GameState nextState;
     private GameObject fieldCenter;
     [SerializeField]
@@ -26,6 +28,14 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+
+    private GameState[] NoInGameStates = {
+        GameState.GameOptions,
+        GameState.GamePause,
+        GameState.GameStart,
+        GameState.GameEnd,
+        GameState.RegisterPlayer
+    };
     private void UpdateCamTarget(GameObject fieldCenter)
     {
         if(fieldCenter != null && cameraTarget != null)
@@ -51,6 +61,10 @@ public class GameManager : MonoBehaviour
     #region Manipulate GameState Methods
     public void UpdateGameState(GameState newState)
     {
+        if (NoInGameStates.Contains(newState) && !NoInGameStates.Contains(State))
+        {
+            lastIngameState = State;
+        }
         oldState = State;
         State = newState;
 
@@ -101,11 +115,20 @@ public class GameManager : MonoBehaviour
     public void RestorePrevieousGameState()
     {
         nextState = State;
-        UpdateGameState(oldState);
+        if(oldState == GameState.GameOptions)
+        {
+            UpdateGameState(lastIngameState);
+        }
+        else
+        {
+            UpdateGameState(oldState);
+        }
+        
     }
     #endregion
 
     #region HandleGameState Methods
+    //this method contains the logic for the HandleInventoryUpdate-State
     private void HandleInventoryUpdate()
     {
         Debug.Log(State.ToString());
@@ -113,11 +136,13 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.PlayerTurnPlayerAction);
     }
 
+    //this method contains the logic for the PlayerTurnRandomCard-State
     private void HandlePlayerTurnRandomCard()
     {
         Debug.Log(State.ToString());
     }
 
+    //this method contains the logic for the GameOptions-State
     private void HandleGameOptions()
     {
         Debug.Log(State.ToString());
@@ -127,6 +152,9 @@ public class GameManager : MonoBehaviour
     private void HandleStartGame()
     {
         Debug.Log(State.ToString());
+        //initalize/reset Game
+        PlayerManager.PMInstance.InitPlayers();
+        TurnManager.TMInstance.InitRound();
     }
 
     //this method contains the logic for the RegisterPlayer-State

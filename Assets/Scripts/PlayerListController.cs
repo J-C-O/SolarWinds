@@ -9,7 +9,11 @@ public class PlayerListController : MonoBehaviour
     public Player player;
     public Button RemovePlayerButton;
     
-
+    public void SetRemovePlayerButton()
+    {
+        RemovePlayerButton.onClick.AddListener(RemovePlayer);
+        Debug.Log(gameObject.name + ": RemovePlayerFunction was set.");
+    }
     public void RemovePlayer()
     {
         if(player == null)

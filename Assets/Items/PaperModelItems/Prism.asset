@@ -15,6 +15,6 @@ MonoBehaviour:
   InputPower: 0
   ItemType: 256
   Value: 0
-  itemIcon: {fileID: 21300000, guid: 0c0c88bd66bdc1c4c962f5e7116eb92c, type: 3}
+  itemIcon: {fileID: 21300000, guid: f7581af375215c741a9f3267a25575a7, type: 3}
   prefab: {fileID: 4755327630548501593, guid: e93a76200c333459eb9ab0c848cfd2dc, type: 3}
   IsActive: 0

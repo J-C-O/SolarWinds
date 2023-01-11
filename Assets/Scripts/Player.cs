@@ -13,6 +13,7 @@ public class Player : ScriptableObject
     private bool isActive;
     public List<Item> inventory = new List<Item>();
 
+    public Color PlayerColor;
 
     public Player GetCopy()
     {
@@ -68,5 +69,10 @@ public class Player : ScriptableObject
     public void SumPoints(double summand)
     {
         Points += summand;
+    }
+
+    public void InitInventory()
+    {
+        inventory = new List<Item>();
     }
 }
