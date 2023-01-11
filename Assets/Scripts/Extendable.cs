@@ -102,7 +102,7 @@ public class Extendable : MonoBehaviour
                 if (PlayerManager.PMInstance != null) {
                     owner = PlayerManager.PMInstance.activePlayer.PlayerID;
                 }
-                owner = created.GetComponent<Ownable>().owner;
+                created.GetComponent<Ownable>().owner = owner;
             }
             // clear from inventory
             if(PlayerInventory.PIInstance != null)
