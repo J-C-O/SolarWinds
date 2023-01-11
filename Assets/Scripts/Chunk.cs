@@ -114,6 +114,13 @@ public class Chunk : MonoBehaviour
         {
             CalculateBoundsAndChilds();
         }
+        if (PlayerManager.PMInstance != null) {
+            var players = PlayerManager.PMInstance.Players;
+            for (int i = 0; i < players.Count; i++) {
+                players[i].Points = CountPower(i);
+            }
+            PlayerManager.PMInstance.ListPlayers();
+        }
     }
 
     public int CountPower(int owner)
