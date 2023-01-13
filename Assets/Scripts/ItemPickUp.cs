@@ -36,8 +36,7 @@ public class ItemPickUp : MonoBehaviour
         if (ownable == null) {
             return false;
         }
-        // TODO: current active player
-        return ownable.owner == 0;
+        return ownable.owner == PlayerManager.PMInstance.activePlayer.PlayerID;
     }
 
     private void OnMouseDown()
