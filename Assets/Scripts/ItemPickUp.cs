@@ -13,6 +13,22 @@ public class ItemPickUp : MonoBehaviour
         if(!IsOwned()) {
             return;
         }
+
+        if (PlayerManager.PMInstance != null && PlayerInventory.PIInstance != null) {
+            var pmInstance = PlayerManager.PMInstance;
+            if (pmInstance.activePlayer == null) {
+                return;
+            }
+            var activeItem = PlayerInventory.PIInstance.GetActiveItem();
+            if (activeItem != null && activeItem != requiredForDestroy) {
+                return;
+            }
+            pmInstance.activePlayer.inventory.Remove(activeItem);
+            Destroy(gameObject);
+            GameManager.GMInstance.UpdateGameState(GameState.InventoryUpdate);
+            return;
+        }
+
         var inventory = InventoryManager.Instance;
         if (requiredForDestroy == null) {
             inventory.Add(Item);

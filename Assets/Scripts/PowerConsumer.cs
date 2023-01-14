@@ -9,6 +9,8 @@ public class PowerConsumer : MonoBehaviour
     public PowerType powerType;
     private Chunk chunk;
     public int powerPoints;
+    // continue raycasting
+    public bool passthrough;
 
     public void Start()
     {

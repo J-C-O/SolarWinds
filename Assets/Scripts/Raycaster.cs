@@ -53,7 +53,7 @@ public class Raycaster
             }
             foreach (var consumer in currentConsumers)
             {
-                if (consumer.powerType == powerType)
+                if (consumer.powerType == powerType && !consumer.passthrough)
                 {
                     // there is a consumer of a relevant type in the ray direction
                     return false;
