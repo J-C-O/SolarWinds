@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8411357073909159002}
   - component: {fileID: 8411357073909159001}
   - component: {fileID: 6080919987759090820}
-  - component: {fileID: 7557457838362285931}
   - component: {fileID: -5577304556159198448}
   m_Layer: 0
   m_Name: ScriptDevGarbage
@@ -131,19 +130,6 @@ MonoBehaviour:
   bringsPoints: 0
   powerType: 1
   powerPoints: 0
---- !u!114 &7557457838362285931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411357073909158996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0248601ec12f145b697f2bf102a093bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  owner: 0
 --- !u!114 &-5577304556159198448
 MonoBehaviour:
   m_ObjectHideFlags: 0

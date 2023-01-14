@@ -238,6 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 4af78e2cf428e3248932d2acf6768b3a, type: 2}
+  requiredForDestroy: {fileID: 0}
+  skipOwnerCheck: 0
 --- !u!65 &6951976418664860642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -265,8 +267,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bringsPoints: 1
   powerType: 1
-  owner: 0
-  IsPowered: 0
+  powerPoints: 0
+  passthrough: 1
 --- !u!1 &7865424848608148313
 GameObject:
   m_ObjectHideFlags: 0
