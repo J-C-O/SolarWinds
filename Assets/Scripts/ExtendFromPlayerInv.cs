@@ -6,6 +6,8 @@ using UnityEngine;
 public class ExtendFromPlayerInv : MonoBehaviour
 {
     private Extendable extendable;
+    public Item allowOnly;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,19 +17,21 @@ public class ExtendFromPlayerInv : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerInventory.PIInstance != null)
+        if (PlayerInventory.PIInstance == null)
         {
-            //var inventory = InventoryManager.Instance;
-            var inventory = PlayerInventory.PIInstance;
-            if (inventory.SelectedItem != null)
-            {
-                extendable.SetPlace(inventory.SelectedItem.prefab);
-            }
-            else
-            {
-                extendable.place = null;
-            }
+            return;
         }
-        
+        var inventory = PlayerInventory.PIInstance;
+        if (allowOnly != null && allowOnly != inventory.SelectedItem) {
+            return;
+        }
+        if (inventory.SelectedItem != null)
+        {
+            extendable.SetPlace(inventory.SelectedItem.prefab);
+        }
+        else
+        {
+            extendable.place = null;
+        }
     }
 }

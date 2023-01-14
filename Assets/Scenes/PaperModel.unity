@@ -6373,7 +6373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldBlock: {fileID: 2744583227255718928, guid: 68b602143fb5efe45bcc59b50671e864, type: 3}
-  borderBlock: {fileID: 1534155296131332156, guid: 4294b8e6a092f98409b170df8d141554, type: 3}
+  borderBlock: {fileID: 1534155296131332156, guid: b507b011fb50c46b8bd1dc56a7458110, type: 3}
   fieldLength: 11
   fieldWidth: 11
 --- !u!114 &1608805826
