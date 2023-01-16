@@ -22,16 +22,16 @@ public class ExtendFromPlayerInv : MonoBehaviour
             return;
         }
         var inventory = PlayerInventory.PIInstance;
+        if (inventory.SelectedItem == null) {
+            extendable.place = null;
+            return;
+        }
         if (allowOnly != null && allowOnly != inventory.SelectedItem) {
             return;
         }
         if (inventory.SelectedItem != null)
         {
             extendable.SetPlace(inventory.SelectedItem.prefab);
-        }
-        else
-        {
-            extendable.place = null;
         }
     }
 }
