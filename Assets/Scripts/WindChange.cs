@@ -10,6 +10,7 @@ public class WindChange : MonoBehaviour
     public GameObject WindArrowDown;
     public GameObject WindArrowRight;
     public GameObject WindArrowLeft;
+    public GameObject Emitter;
 
     private int windState = 0;
 
@@ -35,9 +36,10 @@ public class WindChange : MonoBehaviour
         } else {
             windState += 1;
         }
-        
+        GlobalEmitter globalEmitter = Emitter.GetComponent<Chunk>().GetEmitterFor(PowerType.Wind);
         switch (windState) {
             case 1:
+                globalEmitter.direction = new Vector3Int(0, 0, 1);
                 foreach (Transform cone in WindConeParent)
                 {
                     var rotationVector = cone.rotation.eulerAngles;
@@ -52,6 +54,8 @@ public class WindChange : MonoBehaviour
 
                 break;
             case 2:
+                
+                globalEmitter.direction = new Vector3Int(1, 0, 0);
                 foreach (Transform cone in WindConeParent)
                 {
                     var rotationVector = cone.rotation.eulerAngles;
@@ -64,6 +68,8 @@ public class WindChange : MonoBehaviour
                 WindArrowLeft.SetActive(false);
                 break;
             case 3:
+                globalEmitter.direction = new Vector3Int(-1, 0, 0);
+                
                 foreach (Transform cone in WindConeParent)
                 {
                     var rotationVector = cone.rotation.eulerAngles;
@@ -76,6 +82,7 @@ public class WindChange : MonoBehaviour
                 WindArrowLeft.SetActive(false);
                 break;
             case 4:
+                globalEmitter.direction = new Vector3Int(0, 0, -1);
                 foreach (Transform cone in WindConeParent)
                 {
                     var rotationVector = cone.rotation.eulerAngles;

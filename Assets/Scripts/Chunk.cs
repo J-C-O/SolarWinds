@@ -8,11 +8,23 @@ public class Chunk : MonoBehaviour
     private BoundsInt bounds;
     private Transform[,,] childs;
     private int prevChildCount;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         CalculateBoundsAndChilds();
+    }
+
+    public GlobalEmitter GetEmitterFor(PowerType powerType)
+    {
+        foreach(var emitter in GetComponents<GlobalEmitter>())
+        {
+            if(emitter.powerType == powerType)
+            {
+                return emitter;
+            }
+        }
+        return null;
     }
 
     private GameObject[] GetRelevantObjects()

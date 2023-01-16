@@ -12,12 +12,8 @@ GameObject:
   - component: {fileID: 33475685118417320}
   - component: {fileID: 23298483320828742}
   - component: {fileID: 95195530586078428}
-  - component: {fileID: 65078626091164200}
-  - component: {fileID: 5816680466684734109}
-  - component: {fileID: -7031318402458670423}
-  - component: {fileID: 375739812789404414}
   m_Layer: 0
-  m_Name: Dumpster_A1_Gray
+  m_Name: DumpsterEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,66 +108,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &65078626091164200
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013217289598608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.447382, y: 1.0111903, z: 0.84250414}
-  m_Center: {x: 0.012658998, y: 6.0143536e-15, z: 0.4232226}
---- !u!114 &5816680466684734109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013217289598608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0e8a3f2b83d41fd81761036eff96cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bringsPoints: 0
-  powerType: 1
-  powerPoints: 0
-  passthrough: 0
---- !u!114 &-7031318402458670423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013217289598608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0e8a3f2b83d41fd81761036eff96cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bringsPoints: 0
-  powerType: 0
-  powerPoints: 0
-  passthrough: 0
---- !u!114 &375739812789404414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013217289598608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70481993ba350e84cb3f68f71e5f88c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 6f377987b6e944b35950c600314cc25a, type: 2}
-  requiredForDestroy: {fileID: 11400000, guid: a043a455ecd8d7f48acff724eb2235ce, type: 2}
-  skipOwnerCheck: 1
 --- !u!1 &1416066464673758
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GameMenu.unity
-    guid: 5d3672b789f9aca46b8220e4328c29fc
+    path: Assets/Scenes/PaperModel.unity
+    guid: ed35dcf0d720b2d48b8b5662e46baa7e
   - enabled: 1
-    path: Assets/Scenes/PresentationScene.unity
-    guid: 0b3c498a7249aa94d859f43216595a45
-  - enabled: 1
-    path: Assets/Scenes/TestStage.unity
-    guid: b706df6db16cb6048959ffd7f4e271de
+    path: Assets/Scenes/Riddle 1.unity
+    guid: 87fe53c5b9c880744a20023704f27648
   m_configObjects: {}
