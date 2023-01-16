@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.5377358, g: 0.4234386, b: 0.32720718, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: fa15184d0d280694b9b0c0bbf916e037, type: 2}
   m_HaloStrength: 0.5
@@ -3698,6 +3698,10 @@ PrefabInstance:
       value: WindArrows
       objectReference: {fileID: 0}
     - target: {fileID: 7525630017159841720, guid: daf3142cc8115e14da8836784fc0419b, type: 3}
+      propertyPath: Emitter
+      value: 
+      objectReference: {fileID: 1608805823}
+    - target: {fileID: 7525630017159841720, guid: daf3142cc8115e14da8836784fc0419b, type: 3}
       propertyPath: WindConeParent
       value: 
       objectReference: {fileID: 1621218121}
@@ -4381,6 +4385,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1920465365982546685, guid: db82cd4deee096b429244278f5a9e615, type: 3}
+      propertyPath: Emitter
+      value: 
+      objectReference: {fileID: 1608805823}
     - target: {fileID: 1920465365982546685, guid: db82cd4deee096b429244278f5a9e615, type: 3}
       propertyPath: DirectionalLight
       value: 
@@ -5894,6 +5902,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 765525384}
     m_Modifications:
     - target: {fileID: 7764584948216818581, guid: f59731bda76f8a24cb5219eac15fd755, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764584948216818581, guid: f59731bda76f8a24cb5219eac15fd755, type: 3}
       propertyPath: WindArrowUp
       value: 
       objectReference: {fileID: 457487901}
@@ -5957,7 +5969,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindCones
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7764584948216818581, guid: f59731bda76f8a24cb5219eac15fd755, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f59731bda76f8a24cb5219eac15fd755, type: 3}
 --- !u!1 &1402945921
@@ -6915,6 +6928,7 @@ GameObject:
   - component: {fileID: 1608805827}
   - component: {fileID: 1608805826}
   - component: {fileID: 1608805825}
+  - component: {fileID: 1608805828}
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
@@ -6980,6 +6994,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffer: {x: 0, y: 0, z: 0}
+--- !u!114 &1608805828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608805823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ff45e3698424d0db285b050b1c9ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 1, y: 0, z: 0}
+  powerType: 1
 --- !u!4 &1621218121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7764584948216818586, guid: f59731bda76f8a24cb5219eac15fd755, type: 3}

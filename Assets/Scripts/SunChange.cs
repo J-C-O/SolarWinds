@@ -10,6 +10,7 @@ public class SunChange : MonoBehaviour
     public GameObject SunArrowDown;
     public GameObject SunArrowRight;
     public GameObject SunArrowLeft;
+    public GameObject Emitter;
 
     private int sunState = 0;
 
@@ -35,8 +36,11 @@ public class SunChange : MonoBehaviour
         } else {
             sunState += 1;
         }
+        GlobalEmitter globalEmitter = Emitter.GetComponent<Chunk>().GetEmitterFor(PowerType.Solar);
         switch (sunState) {
             case 1:
+                //Right
+                globalEmitter.direction = new Vector3Int(0, 0, 1);
                 DirectionalLight.transform.rotation = Quaternion.Euler(50, 0, 0);
                 SunArrowUp.SetActive(false);
                 SunArrowDown.SetActive(false);
@@ -44,6 +48,8 @@ public class SunChange : MonoBehaviour
                 SunArrowLeft.SetActive(false);
                 break;
             case 2:
+                //Up
+                globalEmitter.direction = new Vector3Int(-1, 0, 0);
                 DirectionalLight.transform.rotation = Quaternion.Euler(50, -90, 0);
                 SunArrowUp.SetActive(true);
                 SunArrowDown.SetActive(false);
@@ -51,6 +57,8 @@ public class SunChange : MonoBehaviour
                 SunArrowLeft.SetActive(false);
                 break;
             case 3:
+                //Left
+                globalEmitter.direction = new Vector3Int(0, 0, -1);
                 DirectionalLight.transform.rotation = Quaternion.Euler(125, 0, 0);
                 SunArrowUp.SetActive(false);
                 SunArrowDown.SetActive(false);
@@ -58,6 +66,8 @@ public class SunChange : MonoBehaviour
                 SunArrowLeft.SetActive(true);
                 break;
             case 4:
+                //Down
+                globalEmitter.direction = new Vector3Int(1, 0, 0);
                 DirectionalLight.transform.rotation = Quaternion.Euler(125, -90, 0);
                 SunArrowUp.SetActive(false);
                 SunArrowDown.SetActive(true);
