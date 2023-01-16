@@ -20,4 +20,9 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit pressed");
         Application.Quit();
     }
+
+    public void StartDemoRiddle()
+    {
+        SceneManager.LoadScene("Riddle 1");
+    }
 }

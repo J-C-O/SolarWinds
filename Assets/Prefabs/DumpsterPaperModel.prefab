@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7031318402458670423}
   - component: {fileID: 375739812789404414}
   m_Layer: 0
-  m_Name: Dumpster_A1_Gray
+  m_Name: DumpsterPaperModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013217289598608}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.2264557, y: -1.558732, z: -32.438335}
   m_LocalScale: {x: 1.4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

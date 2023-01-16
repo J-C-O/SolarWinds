@@ -35,6 +35,7 @@ public enum GameState
     GameEnd,
     GameOptions,
     InventoryUpdate,
+    RiddleDemoStart,
     UndefinedState
 }
 
