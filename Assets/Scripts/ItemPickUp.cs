@@ -52,6 +52,10 @@ public class ItemPickUp : MonoBehaviour
         if (ownable == null) {
             return false;
         }
+        if (PlayerManager.PMInstance == null) {
+            // riddle mode
+            return ownable.owner == 0;
+        }
         return ownable.owner == PlayerManager.PMInstance.activePlayer.PlayerID;
     }
 
