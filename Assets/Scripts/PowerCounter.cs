@@ -17,6 +17,6 @@ public class PowerCounter : MonoBehaviour
     public void Update()
     {
         int points = chunk.GetComponent<Chunk>().CountPower(0);
-        tmp.text = $"Power: {points}";
+        tmp.text = $"Punkte: {points}";
     }
 }
