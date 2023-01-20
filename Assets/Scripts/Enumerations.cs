@@ -42,13 +42,13 @@ public enum GameState
 public enum PaperModelItem
 {
     DefaultItem = 0,
-    SolarConsumer = 1,
-    WindConsumer = 2,
-    Mirror = 4,
-    Trash = 8,
+    Solarzelle = 1,
+    Windrad = 2,
+    Spiegel = 4,
+    Müll = 8,
     FridaysForFuture = 16,
     ChangeSunDirection = 32,
     ChangeWindDirection = 64,
-    Fan = 128,
-    Prism = 256
+    Ventilator = 128,
+    Prisma = 256
 }

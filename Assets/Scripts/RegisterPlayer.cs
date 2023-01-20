@@ -13,7 +13,7 @@ public class RegisterPlayer : MonoBehaviour
     private string inputValue { get { return NameInput.text; } }
     public void AddListPlayer()
     {
-        if ((inputValue != null) || inputValue != "")
+        if ((inputValue != null) && inputValue != "")
         {
             PlayerManager.PMInstance.AddPlayer(inputValue);
             NameInput.text = "";
