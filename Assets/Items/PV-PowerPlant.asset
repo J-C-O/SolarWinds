@@ -16,3 +16,6 @@ MonoBehaviour:
   ItemName: PV-PowerPlant
   itemIcon: {fileID: 21300000, guid: 882ec8eb556f6a8449425e4076645a8c, type: 3}
   Value: 0
+  PowerType: 0
+  IsActive: 0
+  prefab: {fileID: 7819437488266864023, guid: 1406c1736194d4dfd9dee135a489ab32, type: 3}

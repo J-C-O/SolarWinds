@@ -656,10 +656,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySystem
       objectReference: {fileID: 0}
+    - target: {fileID: 1337814953260371202, guid: ea54d1502b120ed468e0c00cefca2564, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1337814953598489381, guid: ea54d1502b120ed468e0c00cefca2564, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 254029505}
+    - target: {fileID: 1337814954700436513, guid: ea54d1502b120ed468e0c00cefca2564, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7489203333262032254, guid: ea54d1502b120ed468e0c00cefca2564, type: 3}
       propertyPath: m_RootOrder
       value: 7

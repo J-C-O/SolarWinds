@@ -18,3 +18,4 @@ MonoBehaviour:
   Value: 0
   PowerType: 1
   IsActive: 0
+  prefab: {fileID: 7865424848362774880, guid: deab38a65693549f8bb8dea0eacbc88f, type: 3}

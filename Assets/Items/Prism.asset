@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837f308f9f0d45d43b069dd0ed97c27d, type: 3}
+  m_Name: Prism
+  m_EditorClassIdentifier: 
+  Id: 1
+  ItemName: Prism
+  itemIcon: {fileID: 21300000, guid: 7000f042124d2d64fb90627d63db10a7, type: 3}
+  Value: 0
+  PowerType: 0
+  IsActive: 0
+  prefab: {fileID: 4755327630548501593, guid: e93a76200c333459eb9ab0c848cfd2dc, type: 3}

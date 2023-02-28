@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PowerConsumer : MonoBehaviour
@@ -6,10 +7,10 @@ public class PowerConsumer : MonoBehaviour
     public bool bringsPoints;
     [Tooltip("Type of the ray this consumer terminates. Use multiple consumers for terminating multiple types.")]
     public PowerType powerType;
-    [Tooltip("Owner of the consumer.")]
-    public int owner;
     private Chunk chunk;
-    public bool IsPowered;
+    public int powerPoints;
+    // continue raycasting
+    public bool passthrough;
 
     public void Start()
     {
@@ -25,13 +26,14 @@ public class PowerConsumer : MonoBehaviour
         }
         var raycaster = new Raycaster(chunk);
         var intPos = Vector3Int.RoundToInt(transform.position);
-        var right = raycaster.Cast(intPos, Vector3Int.right, powerType);
-        var left = raycaster.Cast(intPos, Vector3Int.left, powerType);
-        var forward = raycaster.Cast(intPos, Vector3Int.forward, powerType);
-        var back = raycaster.Cast(intPos, Vector3Int.back, powerType);
-        var up = raycaster.Cast(intPos, Vector3Int.up, powerType);
-        var down = raycaster.Cast(intPos, Vector3Int.down, powerType);
-        IsPowered = right || left || forward || back || up || down;
+        int points = 0;
+        points += Convert.ToInt32(raycaster.Cast(intPos, Vector3Int.right, powerType));
+        points += Convert.ToInt32(raycaster.Cast(intPos, Vector3Int.left, powerType));
+        points += Convert.ToInt32(raycaster.Cast(intPos, Vector3Int.forward, powerType));
+        points += Convert.ToInt32(raycaster.Cast(intPos, Vector3Int.back, powerType));
+        points += Convert.ToInt32(raycaster.Cast(intPos, Vector3Int.up, powerType));
+        points += Convert.ToInt32(raycaster.Cast(intPos, Vector3Int.down, powerType));
+        powerPoints = points;
         //Debug.Log("["+ gameObject.name +"]isPowered: " + IsPowered.ToString());
     }
 }
